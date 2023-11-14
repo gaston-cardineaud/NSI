@@ -1,6 +1,5 @@
 import pygame
 from math import *
-import time
 pygame.init()
 
 class InfoGame:
@@ -19,11 +18,11 @@ class InfoGame:
                     [0, 1, 0, 1, 0, 1, 0],
                     [1, 0, 1, 0, 1, 0, 1],
                     [0, 1, 0, 1, 0, 1, 0]]
-        self.total_piece = [] ##lors du menu3 contient toute les piece sur le plateau 
+        self.total_piece = [] ##lors du menu3 contient toute les piece sur le plateau
 
 
 
-def quitter(): 
+def quitter():
     '''
     a son appel stop le programm
     '''
@@ -31,14 +30,14 @@ def quitter():
     pygame.quit()
     print("Jeu fermé")
     quit()
-    
+
 
 class img:
     '''
     permet de stocker les image avec des information utile
     '''
     list = [] ##list contenant toute les immage instaler
-    def __init__(self,name,x=0,y=0,scale=1,active = False,when = None):       
+    def __init__(self,name,x=0,y=0,scale=1,active = False,when = None):
         image = pygame.image.load(f"assets/{name}.png")
         largeur = image.get_width()
         hauteur = image.get_height()
@@ -78,7 +77,7 @@ def wrap_text(text, font, max_width):
 
 def afficher_texte(texte, position, taille=30, color=(0, 0, 0), max_width=860):
     '''
-    permet d'aficher du texte a la position voulue 
+    permet d'aficher du texte a la position voulue
     '''
     font = pygame.font.Font(None, taille)
     lines = texte.split("\n")  # Divise le texte en lignes à chaque "\n"
@@ -104,7 +103,7 @@ def affiche():
     l = img.list
     for i in l: ##affiche les img "basic"
         if i.when == Game.menu:
-            screen.blit(i.image,i.topleft)  
+            screen.blit(i.image,i.topleft)
         elif i.activ:
             screen.blit(i.image,i.topleft)
     if Game.menu == 1: ##affichage particuler du menu1
@@ -123,7 +122,7 @@ def affiche():
         elif Game.choix == 4:
             im = pygame.transform.rotate(eguille.image,80)
             co = eguille.rotate(80)
-            screen.blit(im,co) 
+            screen.blit(im,co)
     if Game.menu == 2: ##affichage particulier du menu2
         compte = 0
         for i in l:
@@ -151,7 +150,7 @@ def affiche():
     if Game.menu == 3: ##affichage particulier menu3
         afficher_texte(("retour"),(retour.topleft[0]+retour.taille[0]/2,retour.topleft[1]+retour.taille[1]/2),taille=35)
         afficher_texte(("tuto"),(tuto.topleft[0]+tuto.taille[0]/2,tuto.topleft[1]+tuto.taille[1]/2),taille=35)
-        screen.blit(pygame.transform.scale(Game.total_piece[Game.choix].image,(Game.total_piece[Game.choix].taille[0]*0.3,Game.total_piece[Game.choix].taille[1]*0.3)),(60,65))
+        screen.blit(pygame.transform.scale(Game.total_piece[Game.choix].image,(int(Game.total_piece[Game.choix].taille[0]*0.3),int(Game.total_piece[Game.choix].taille[1]*0.3))),(60,65))
         afficher_texte(("pièce sélectionnée"),(75,260),taille=22)
         afficher_texte(("déplacement"),(865,355),taille=30)
         if Game.difficulter == 1:
@@ -250,7 +249,7 @@ def tuto2():
     screen.blit(pygame.image.load("assets/help1.jpg"),(710,290))
     screen.blit(pygame.image.load("assets/help2.jpg"),(710,40))
     afficher_texte("L'objectif est de déplacer la pièce rouge en haut à droite.\nToutes les pièces se déplacent en diagonale sauf les pièces blanches.\nPour déplacer une pièce il vous faut la sélectionner en haut à gauche et ensuite la déplacer soit via les flèches du clavier soit en cliquant sur les flèches en bas à droite. \n\n Bonne chance !\n\n\n\n\n\n\n*** pour continuer appuyez sur espace ou cliquez ! ***",(370,50),taille=35,max_width=700)
-    
+
 def souris_clic(event):
     '''
     lors du menu 3 gere tout les clic recu pour joué aux jeux
@@ -292,7 +291,7 @@ def setup_map():
     Game.total_piece = []
 
     largeur_initial = 218
-    hauteur_initial = 38   
+    hauteur_initial = 38
     ecart_largeur = 73
     ecart_hauteur = 63
 
@@ -309,7 +308,7 @@ def setup_map():
             Game.total_piece.extend([p_rouge,p_blanc])
         elif Game.level ==3:
             Game.map[3][5],Game.map[4][6] = p_rouge.name, p_rouge.name
-            p_rouge.topleft = (largeur_initial+3*ecart_largeur,hauteur_initial+5*ecart_hauteur) 
+            p_rouge.topleft = (largeur_initial+3*ecart_largeur,hauteur_initial+5*ecart_hauteur)
             Game.map[2][4],Game.map[4][4] = p_rose.name,p_rose.name
             p_rose.topleft = (largeur_initial+2*ecart_largeur,hauteur_initial+4*ecart_hauteur)
             Game.total_piece.extend([p_rouge,p_rose])
@@ -422,8 +421,8 @@ def setup_map():
         if Game.total_piece[i].name != "piece_blance" :
             new.append(Game.total_piece[i])
     Game.total_piece = new
-    
-            
+
+
 
 def deplacement(direction):
     """
@@ -468,14 +467,14 @@ def deplacement(direction):
                 break
 
     ##new_coordoner contient les co du deplacement, si il est vide alors le deplacement a etait imposible
-    if new_coordoner != []: 
+    if new_coordoner != []:
         for i in coordoner:
             Game.map[i[0]][i[1]] = 0
         for i in new_coordoner:
             Game.map[i[0]][i[1]] = selection.name
     else:
         return ##si deplacement impossible sa sert a rien de continuer la fonction
-    
+
     ##maintenant le deplacement a etait enregistrer dans le Game.map
     ecart_largeur = 73
     ecart_hauteur = 63
@@ -594,7 +593,7 @@ pygame.display.set_caption("Anti-Virus")
 screen = pygame.display.set_mode((largeur_ecran, hauteur_ecran)) ##taille de la fenetre
 
 
-Game = InfoGame() ##game contiendra toute les information du jeux 
+Game = InfoGame() ##game contiendra toute les information du jeux
 
 roue,junior,starter,master,expert,eguille = None,None,None,None,None,None ##contiendra les image pour la phase du menu 1
 lv1,lv2,lv3,retour,eguille2 = None,None,None,None,None ##contiendra les bulle pour la phase de menu2
@@ -605,9 +604,9 @@ while Game.InGame:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:##verif que la fenetre n'est pas fermer
             quitter()
-        elif (Game.menu ==1 or Game.menu ==2) and event.type == pygame.KEYDOWN and Game.tuto == False: ##active la fonction choix si nous somme dans le menu 1 ou 2 et qu'une touche de clavier est saisie 
+        elif (Game.menu ==1 or Game.menu ==2) and event.type == pygame.KEYDOWN and Game.tuto == False: ##active la fonction choix si nous somme dans le menu 1 ou 2 et qu'une touche de clavier est saisie
             choix(event)
-        elif (Game.menu ==1 or Game.menu ==2) and event.type == pygame.MOUSEBUTTONDOWN and Game.tuto == False: ##active la fonction clic_menu si nous somme dans le menu 1 ou 2 et que la sourie est presser 
+        elif (Game.menu ==1 or Game.menu ==2) and event.type == pygame.MOUSEBUTTONDOWN and Game.tuto == False: ##active la fonction clic_menu si nous somme dans le menu 1 ou 2 et que la sourie est presser
             clic_menu(event)
         elif Game.tuto and ((event.type == pygame.KEYDOWN and event.key ==pygame.K_SPACE ) or event.type == pygame.MOUSEBUTTONDOWN): ##desactive game tuto s'il est actif et qu'on apuie sur espace ou un clic souris
             Game.tuto = False
