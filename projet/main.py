@@ -380,7 +380,7 @@ def setup_map():
             p_orange2.topleft = (largeur_initial+0*ecart_largeur,hauteur_initial+1*ecart_hauteur)
             Game.map[1][6] =  p_blanc2.name
             p_blanc2.topleft = (largeur_initial+1*ecart_largeur,hauteur_initial+5*ecart_hauteur)
-            Game.map[3][3],Game.map[4][2] = p_bleu.name, p_bleu.name
+            Game.map[4][4],Game.map[5][3] = p_bleu.name, p_bleu.name
             p_bleu.topleft = (largeur_initial+4*ecart_largeur,hauteur_initial+3*ecart_hauteur)
             Game.total_piece.extend([p_rouge,p_orange2,p_blanc2,p_bleu,p_blanc])
     elif Game.difficulter == 4:
