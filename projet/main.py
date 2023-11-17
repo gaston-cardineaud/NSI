@@ -248,7 +248,7 @@ def tuto2():
     screen.blit(image_fond, (0, 0)) ##afiche le font
     screen.blit(pygame.image.load("assets/help1.jpg"),(710,290))
     screen.blit(pygame.image.load("assets/help2.jpg"),(710,40))
-    afficher_texte("L'objectif est de déplacer la pièce rouge en haut à droite.\nToutes les pièces se déplacent en diagonale sauf les pièces blanches.\nPour déplacer une pièce il vous faut la sélectionner en haut à gauche et ensuite la déplacer soit via les flèches du clavier soit en cliquant sur les flèches en bas à droite. \n\n Bonne chance !\n\n\n\n\n\n\n*** pour continuer appuyez sur espace ou cliquez ! ***",(370,50),taille=35,max_width=700)
+    afficher_texte("L'objectif est de déplacer la pièce rouge en haut à gauhe.\nToutes les pièces se déplacent en diagonale sauf les pièces blanches.\nPour déplacer une pièce il vous faut la sélectionner en haut à gauche et ensuite la déplacer soit via les flèches du clavier soit en cliquant sur les flèches en bas à droite. \n\n Bonne chance !\n\n\n\n\n\n\n*** pour continuer appuyez sur espace ou cliquez ! ***",(370,50),taille=35,max_width=700)
 
 def souris_clic(event):
     '''
@@ -361,7 +361,7 @@ def setup_map():
             p_blanc.topleft = (largeur_initial+3*ecart_largeur,hauteur_initial+3*ecart_hauteur)
             Game.map[4][4],Game.map[4][6] = p_rose2.name,p_rose2.name
             p_rose2.topleft = (largeur_initial+4*ecart_largeur,hauteur_initial+4*ecart_hauteur)
-            Game.map[4][0],Game.map[3][1],Game.map[5][2]=p_orange.name,p_orange.name,p_orange.name
+            Game.map[4][0],Game.map[3][1],Game.map[5][1]=p_orange.name,p_orange.name,p_orange.name
             p_orange.topleft = (largeur_initial+3*ecart_largeur,hauteur_initial+0*ecart_hauteur)
             Game.total_piece.extend([p_rouge,p_orange,p_rose2,p_blanc])
         elif Game.level == 3:
