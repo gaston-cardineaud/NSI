@@ -52,9 +52,16 @@ class img:
         self.name = name
         self.when = when ##contient un chiffre corespondant a qu'elle menu nous somme
         img.list.append(self)
+
+
+
+
     def rotate(self, angle):
         ## dois normalement renvoyer les nouvel coordonée apres la rotation de l'img
         return (self.topleft)
+
+
+
 
 def wrap_text(text, font, max_width):
     # Divise le texte en lignes pour s'adapter à la largeur maximale
@@ -371,7 +378,7 @@ def setup_map():
             p_blanc.topleft = (largeur_initial+3*ecart_largeur,hauteur_initial+1*ecart_hauteur)
             Game.map[1][1],Game.map[0][2],Game.map[1][3]=p_orange2.name,p_orange2.name,p_orange2.name
             p_orange2.topleft = (largeur_initial+0*ecart_largeur,hauteur_initial+1*ecart_hauteur)
-            Game.map[1][5] =  p_blanc2.name
+            Game.map[1][6] =  p_blanc2.name
             p_blanc2.topleft = (largeur_initial+1*ecart_largeur,hauteur_initial+5*ecart_hauteur)
             Game.map[3][3],Game.map[4][2] = p_bleu.name, p_bleu.name
             p_bleu.topleft = (largeur_initial+4*ecart_largeur,hauteur_initial+3*ecart_hauteur)
